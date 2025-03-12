@@ -4,3 +4,5 @@
 ![5](https://github.com/user-attachments/assets/4375bd04-63c3-40ae-b846-9c78f8337aa4)
 ![3](https://github.com/user-attachments/assets/d144ade2-3646-4a1f-8d20-5bc2b01903ae)
 ![4](https://github.com/user-attachments/assets/bd20cf91-e849-4eed-9a93-70cff2f16f00)
+
+![Hotel_ERD](https://github.com/user-attachments/assets/4a1aeb88-a7cf-46e1-90ae-25c8ab7b888c)
