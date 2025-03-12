@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - HotelReverseTask</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/HotelReverseTask.styles.css" asp-append-version="true" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+<body>
+    <header style="background: url('@Url.Content("~/Images/home-img.jpg")')">
+
+
+        <nav class="me-1" >
+            <div class="navbar">
+                <div class="logo">
+                    <a href="#">
+                        <img src="images/logo.jpg" alt="" />
+                    </a>
+                </div>
+
+                <div class="menu_btn">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+
+            <ul class="links">
+                <li>
+                    <a  asp-area="" asp-controller="Hotel" asp-action="Index">Home</a>
+                </li>
+                <li><a href="#about">About</a></li>
+       
+            </ul>
+
+            @if (User?.Identity?.IsAuthenticated != true)
+            {
+                <a class="btn nav_btn me-3" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
+            }
+            else
+            {
+
+               
+                @if (User.IsInRole("Administrator"))
+                {
+                    <a class="btn btn-danger m-0" style="margin:0px;   background-color:brown"  asp-area="" asp-controller="Hotel" asp-action="Profile">Dashboard</a>
+                   
+
+                }
+                
+                <a class="btn nav_btn" style="margin:0px;   " asp-area="" asp-controller="Account" asp-action="Logout"> Logout</a>
+            }
+
+            }
+           
+    </nav>
+        <section class="section header_section">
+            <p>Stay - Relax - Repeat</p>
+            <h1>
+                Step Into Serenity <br />
+                Where <span>Luxury</span> Feels Like <span>Home</span>.
+            </h1>
+        </section>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2025 - HotelReverseTask - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

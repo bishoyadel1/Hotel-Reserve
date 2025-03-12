@@ -1,0 +1,57 @@
+﻿@using Domain.Entities;
+@model IEnumerable<Room>
+
+<div class="deal_wrapper">
+    @if (Model.Any())
+    {
+        foreach (var item in Model)
+        {
+            <div class="deal_card">
+                <div class="card_img">
+                    <img src="images/deal-1.jpg" alt="" />
+                    <div class="card_icons">
+                        <span><i class="fas fa-heart"></i></span>
+                        <span><i class="fas fa-bookmark"></i></span>
+                        <span><i class="fas fa-share-nodes"></i></span>
+                    </div>
+                </div>
+
+                <div class="card_details">
+                    <h4>@item.Hotel.HotelName</h4>
+                    <p>@item.RoomTypeName</p>
+                    <h5>Starting from <span>@item.PricePerNight</span></h5>
+                    <a class="btn" asp-action="GetRoom" asp-controller="Hotel" asp-route-Id ="@item.Id">Book Now</a>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <p>No available rooms found.</p>
+    }
+</div>
+
+<!-- Pagination -->
+<div class="pagination">
+    @if (ViewBag.TotalPages > 0)
+    {
+        <ul class="pagination-list mx-auto">
+            @if (ViewBag.CurrentPage > 1)
+            {
+                <li><a href="@Url.Action("SearchRooms", new { hotelId = 0, page = ViewBag.CurrentPage - 1 })">Previous</a></li>
+            }
+
+            @for (int i = 1; i <= ViewBag.TotalPages; i++)
+            {
+                <li class="@(i == ViewBag.CurrentPage ? "active" : "")">
+                    <a href="@Url.Action("SearchRooms", new { hotelId = 0, page = i })">@i</a>
+                </li>
+            }
+
+            @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+            {
+                <li><a href="@Url.Action("SearchRooms", new { hotelId = 0, page = ViewBag.CurrentPage + 1 })">Next</a></li>
+            }
+        </ul>
+    }
+</div>

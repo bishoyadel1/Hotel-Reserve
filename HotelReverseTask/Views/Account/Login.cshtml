@@ -1,0 +1,57 @@
+﻿@model LoginViewModel
+
+@{
+    Layout = "_AccountLayout";
+}
+
+<section class="sign-in">
+    <div class="container">
+        <div class="signin-content">
+            <!-- Signin Image -->
+            <div class="signin-image">
+                <figure>
+                    <img src="~/Images/Account/signin-image.jpg" alt="Sign in image" />
+                </figure>
+                <a href="@Url.Action("Register", "Account")" class="signup-image-link">Create an account</a>
+            </div>
+
+            <!-- Signin Form -->
+            <div class="signin-form">
+                <h2 class="form-title">Sign In</h2>
+              
+                <p class="form-title">Login With Admin Role  by </p>
+                <p class="form-title m-0 p-0">Email : admin@localhost.com</p>
+                <p class="form-title m-0 p-0">Password: $Admin123</p>
+               
+                <form method="POST" asp-action="Login" class="register-form" id="login-form">
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+                    <div class="form-group">
+                        <label for="your_email"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                        <input type="email" asp-for="Email" class="form-control" id="your_email" placeholder="Your Email" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
+                        <input type="password" asp-for="Password" class="form-control" id="your_pass" placeholder="Password" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
+                        <label for="remember-me" class="label-agree-term"><span><span></span></span>Remember me</label>
+                    </div>
+
+                    <div class="form-group form-button">
+                        <input type="submit" name="signin" id="signin" class="form-submit" value="Log in" />
+                    </div>
+                </form>
+
+             
+
+      
+               
+            </div>
+        </div>
+    </div>
+</section>

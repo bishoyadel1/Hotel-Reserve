@@ -1,0 +1,57 @@
+﻿@model RegisterViewModel
+@{
+    Layout = "_AccountLayout";
+}
+
+<section class="signup">
+    <div class="container">
+        <div class="signup-content">
+            <!-- Signup Form -->
+            <div class="signup-form">
+                <h2 class="form-title">Sign up</h2>
+         
+                <form method="POST" asp-action="Register" class="register-form" id="register-form">
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+                    <div class="form-group">
+                        <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                        <input type="text" asp-for="Name" class="form-control" placeholder="Your Name" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email"><i class="zmdi zmdi-email"></i></label>
+                        <input type="email" asp-for="Email" class="form-control" placeholder="Your Email" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pass"><i class="zmdi zmdi-lock"></i></label>
+                        <input type="password" asp-for="Password" class="form-control" placeholder="Password" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
+                        <input type="password" asp-for="ConfirmPassword" class="form-control" placeholder="Repeat your password" />
+                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="checkbox" asp-for="IsOrganizer" id="agree-term" class="agree-term" />
+                        <label for="agree-term" class="label-agree-term">
+                            <span><span></span></span> I want to become an event organizer.
+                        </label>
+                        <span asp-validation-for="IsOrganizer" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group form-button">
+                        <input type="submit" name="signup" id="signup" class="form-submit" value="Register" />
+                    </div>
+                </form>
+
+            </div>
+ 
+        
+        </div>
+    </div>
+</section>

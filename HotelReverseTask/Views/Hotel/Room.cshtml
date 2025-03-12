@@ -1,0 +1,26 @@
+﻿@using Domain.Entities;
+
+@model Room   
+
+<section class="section about_section" id="about">
+      <div class="about_img">
+        <img src="@Url.Content("~/Images/explore-3.jpg")" alt="" />
+      </div>
+
+      <div class="about_content">
+        <p class="title">Book Now</p>
+        <h2 class="tagline">@Model.Hotel.HotelName</h2>
+        <h5 class="tagline">Available Rooms :@Model.AvailableRooms</h5>
+        <p class="desc">
+          With a focus on quality accommodations, personalized experiance, and
+          seamless booking, our platform is dedicated to ensuring that every
+          traveller embarks on their dream holiday with confidance and
+          excitement.
+        </p>
+        <div class="about_btn">
+            <a id="bookingFormRoom" class="btn"  asp-action="BookingForm" asp-controller="Hotel" asp-route-Id="@Model.Id">Book Now</a>
+        </div>
+      </div>
+    </section>
+
+    <hr />

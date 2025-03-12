@@ -1,0 +1,44 @@
+﻿@using Domain.Entities;
+@model IEnumerable<Hotel>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<section class="section booking_section">
+    <form id="bookingForm" action="@Url.Action("SearchRooms", "Hotel")" method="get" class="booking_form">
+        <div class="input_box">
+            <span><i class="fas fa-calendar"></i></span>
+            <div>
+                <label>CHECK-IN</label>
+                <input type="date" name="checkInDate" required />
+            </div>
+        </div>
+        <div class="input_box">
+            <span><i class="fas fa-calendar"></i></span>
+            <div>
+                <label>CHECK-OUT</label>
+                <input type="date" name="checkOutDate" required />
+            </div>
+        </div>
+        <div class="input_box">
+            <span><i class="fas fa-hotel"></i></span>
+            <div>
+                <label>Hotel</label>
+                <select class="form-select" name="hotelId" required>
+                    @foreach (var item in ViewBag.hotel)
+                    {
+                        <option value="@item.Id">@item.HotelName</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="input_box">
+            <button type="submit" class="btn">Search</button>
+        </div>
+    </form>
+</section>
+
+<div id="roomResults">
+    <!-- AJAX results load here -->
+</div>

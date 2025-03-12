@@ -1,0 +1,79 @@
+﻿@{
+    Layout = "_ProfileAndDashboardLayout";
+}
+@model HotelReserseTask.Models.RoomViewModel
+
+<section class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg p-4">
+                <h3 class="text-center mb-4">Add New Room</h3>
+
+                <form id="roomForm">
+                    <div class="mb-3">
+                        <label class="form-label">Room Type</label>
+                        <input type="text" class="form-control" name="RoomTypeName" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Price Per Night</label>
+                        <input type="number" class="form-control" name="PricePerNight" step="0.01" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Total Rooms</label>
+                        <input type="number" class="form-control" name="TotalRooms" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Available Rooms</label>
+                        <input type="number" class="form-control" name="AvailableRooms" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Select Hotel</label>
+                        <select class="form-control" name="HotelID" required>
+                            <option value="">-- Select Hotel --</option>
+                            @foreach (var hotel in ViewBag.hotel)
+                            {
+                                <option value="@hotel.Id">@hotel.HotelName</option>
+                            }
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100">Create Room</button>
+                </form>
+
+                <div id="roomMessage" class="mt-3"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#roomForm").submit(function (event) {
+                event.preventDefault();
+
+                let formData = $(this).serialize();
+                $.ajax({
+                    url: "/Hotel/CreateRoom",
+                    type: "POST",
+                    data: formData,
+                    success: function (response) {
+                        if (response.success) {
+                            $("#roomMessage").html("<p class='text-success'>" + response.message + "</p>");
+                            $("#roomForm")[0].reset();
+                        } else {
+                            $("#roomMessage").html("<p class='text-danger'>" + response.message + "</p>");
+                        }
+                    },
+                    error: function () {
+                        $("#roomMessage").html("<p class='text-danger'>Error creating room.</p>");
+                    }
+                });
+            });
+        });
+    </script>
+}
